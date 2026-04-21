@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { getColorById } from '../data/colors'
+import { COLORS, getColorById, getNextColorId } from '../data/colors'
+import Button from '../components/Button'
 
 function Pill({ title, icon, className, to }) {
   return (
@@ -134,6 +135,14 @@ function LastLearned({ lastCompletedColor }) {
 }
 
 export default function Home({ stars = 0, lastCompletedColor = null }) {
+  const lastColorId = COLORS[COLORS.length - 1]?.id
+
+  const continueTo = lastCompletedColor
+    ? lastCompletedColor === lastColorId
+      ? '/games'
+      : `/learn/${getNextColorId(lastCompletedColor)}`
+    : '/learn/red'
+
   return (
     <div className="space-y-8">
       <section className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
@@ -146,6 +155,17 @@ export default function Home({ stars = 0, lastCompletedColor = null }) {
         <p className="max-w-xl text-base font-semibold text-zinc-600 md:text-lg">
           Let’s explore the magical world of English together with our friend Buzz!
         </p>
+      </section>
+
+      <section className="flex justify-center">
+        <Link to={continueTo} className="w-full max-w-md">
+          <Button className="w-full bg-emerald-200 px-10 py-6 text-xl text-emerald-950 shadow-[0_22px_55px_rgba(16,185,129,0.28)] hover:bg-emerald-300 focus-visible:ring-emerald-200">
+            <span className="text-2xl" aria-hidden="true">
+              🚀
+            </span>
+            Continue Learning
+          </Button>
+        </Link>
       </section>
 
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-2">

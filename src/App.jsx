@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import BottomNav from './components/BottomNav'
 import Home from './pages/Home'
+import Landing from './pages/Landing'
 import Learn from './pages/Learn'
 import Game from './pages/Game'
 import Reward from './pages/Reward'
@@ -66,6 +67,14 @@ export default function App() {
 
   return (
     <Routes>
+      <Route
+        path="/landing"
+        element={
+          <Shell stars={stars}>
+            <Landing />
+          </Shell>
+        }
+      />
       <Route
         path="/"
         element={
