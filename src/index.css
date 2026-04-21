@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+@keyframes minilingo-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes minilingo-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-pop {
+  animation: minilingo-pop 240ms ease-out;
+}
+
+.animate-shake {
+  animation: minilingo-shake 340ms ease-in-out;
+}
+
+@keyframes minilingo-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes minilingo-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-fade-up {
+  animation: minilingo-fade-up 420ms ease-out both;
+}
+
+.animate-float {
+  animation: minilingo-float 2.8s ease-in-out infinite;
+}
+
+@keyframes minilingo-star-float {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.8) rotate(-8deg);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-70px) scale(1.2) rotate(10deg);
+  }
+}
+
+.animate-star-float {
+  animation: minilingo-star-float 900ms ease-out both;
+}
+
+@keyframes minilingo-slow-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-slow-float {
+  animation: minilingo-slow-float 4.2s ease-in-out infinite;
+}
+
+@keyframes minilingo-twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.9);
+    filter: blur(0px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+    filter: blur(0.2px);
+  }
+}
+
+.animate-twinkle {
+  animation: minilingo-twinkle 1.9s ease-in-out infinite;
+}
