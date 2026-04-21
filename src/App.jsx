@@ -8,7 +8,7 @@ import Landing from './pages/Landing'
 import Learn from './pages/Learn'
 import Game from './pages/Game'
 import Reward from './pages/Reward'
-import { logMissingAudioFiles } from './utils/audio'
+import { logMissingAudioFiles, preloadSounds } from './utils/audio'
 
 function Shell({ stars, children }) {
   const location = useLocation()
@@ -36,6 +36,7 @@ export default function App() {
 
   useEffect(() => {
     try {
+      preloadSounds()
       logMissingAudioFiles()
 
       const savedStars = window.localStorage.getItem('stars')

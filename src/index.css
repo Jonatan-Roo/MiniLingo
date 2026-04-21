@@ -126,3 +126,37 @@ body {
 .animate-twinkle {
   animation: minilingo-twinkle 1.9s ease-in-out infinite;
 }
+
+@keyframes minilingo-success-bounce {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1.06);
+  }
+}
+
+.animate-success-bounce {
+  animation: minilingo-success-bounce 520ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+
+@keyframes minilingo-burst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(1.2) rotate(12deg);
+  }
+}
+
+.animate-burst {
+  animation: minilingo-burst 620ms ease-out both;
+}

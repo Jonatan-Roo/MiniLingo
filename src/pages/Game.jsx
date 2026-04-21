@@ -1,14 +1,13 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import ColorCard from '../components/ColorCard'
 import Mascot from '../components/Mascot'
 import { playColorPronunciation, playUiSound } from '../utils/audio'
 
 const CHOICES = [
-  { id: 'blue', label: 'BLUE', bg: 'bg-sky-700', text: 'text-sky-100' },
-  { id: 'red', label: 'RED', bg: 'bg-rose-700', text: 'text-rose-100' },
-  { id: 'green', label: 'GREEN', bg: 'bg-emerald-700', text: 'text-emerald-100' },
-  { id: 'yellow', label: 'YELLOW', bg: 'bg-amber-700', text: 'text-amber-100' },
+  { id: 'blue', label: 'BLUE', hex: '#0EA5E9' },
+  { id: 'red', label: 'RED', hex: '#E11D48' },
+  { id: 'green', label: 'GREEN', hex: '#22C55E' },
+  { id: 'yellow', label: 'YELLOW', hex: '#F59E0B' },
 ]
 
 const TARGET = CHOICES[1]
@@ -24,7 +23,7 @@ export default function Game({ onWin, onCompleteColor }) {
   const [mascotState, setMascotState] = useState('thinking')
 
   const instruction = useMemo(() => {
-    return status === 'success' ? '¡Genial!' : status === 'wrong' ? 'Probá otra vez' : 'Tocá'
+    return status === 'success' ? 'Great!' : status === 'wrong' ? 'Try again' : 'Tap'
   }, [status])
 
   function onPick(choice) {
@@ -42,7 +41,7 @@ export default function Game({ onWin, onCompleteColor }) {
       onCompleteColor?.(choice.id)
       window.setTimeout(() => {
         navigate('/reward', { replace: true })
-      }, 650)
+      }, 500)
       return
     }
 
@@ -54,77 +53,106 @@ export default function Game({ onWin, onCompleteColor }) {
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-1 text-center sm:px-0">
+    <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-center gap-8 px-3 text-center sm:px-4">
       <div className="flex flex-col items-center gap-4">
         <Mascot state={mascotState} size={90} className="mb-1" />
-        <div className="text-sm font-extrabold text-zinc-600">Let's play!</div>
-        <div className="flex items-center justify-center gap-3">
-          <span className="text-5xl font-black tracking-tight text-zinc-900 md:text-6xl">
-            {instruction}
-          </span>
-          <span className="inline-flex items-center rounded-full bg-rose-700 px-6 py-2 text-4xl font-black tracking-tight text-white shadow-[0_18px_50px_rgba(225,29,72,0.25)] md:text-5xl">
-            {TARGET.label}
-          </span>
-        </div>
 
-        <div className="flex items-center gap-2">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div
-              key={i}
-              className={[
-                'size-10 rounded-full shadow-sm ring-1 ring-white/70',
-                i < 2 ? 'bg-emerald-600' : 'bg-emerald-200',
-              ].join(' ')}
+        <h1 className="flex flex-wrap items-center justify-center gap-4 text-4xl font-black tracking-tight text-zinc-900 md:text-5xl">
+          <span>Tap</span>
+          <span className="inline-flex items-center gap-3 rounded-full bg-white/80 px-5 py-3 shadow-sm ring-1 ring-white/70">
+            <span
+              className="grid size-10 rounded-full shadow-[0_10px_25px_rgba(0,0,0,0.18)] ring-1 ring-white/70 md:size-12"
+              style={{ backgroundColor: TARGET.hex }}
               aria-hidden="true"
             />
-          ))}
+            <span className="text-2xl font-black tracking-tight md:text-3xl">{TARGET.label}</span>
+          </span>
+        </h1>
+        <div className="text-sm font-extrabold text-zinc-600" role="status" aria-live="polite">
+          {instruction}
         </div>
       </div>
 
-      <div className="grid w-full grid-cols-2 gap-4 sm:gap-5 md:grid-cols-4 md:gap-6">
-        {CHOICES.map((c) => (
-          <div key={c.id} className="relative">
-            <ColorCard
-              label={c.label}
-              bgClass={[
-                c.bg,
-                showCorrectHint && c.id === TARGET.id ? 'ring-4 ring-amber-200 shadow-[0_0_0_10px_rgba(251,191,36,0.18)]' : '',
-              ].join(' ')}
-              textClass={c.text}
-              onClick={() => onPick(c)}
-              animateClass={[
-                status === 'success' && c.id === TARGET.id ? 'animate-pop' : '',
-                status === 'wrong' && pickedId === c.id ? 'animate-shake' : '',
-              ].join(' ')}
-            />
+      <div className="grid w-full max-w-4xl grid-cols-2 place-items-center gap-6 md:grid-cols-4">
+        {CHOICES.map((c) => {
+          const isCorrect = c.id === TARGET.id
+          const showGlow = showCorrectHint && isCorrect
+          const shouldPop = status === 'success' && isCorrect
+          const shouldShake = status === 'wrong' && pickedId === c.id
 
-            {showStars && c.id === TARGET.id ? (
-              <div
-                className="pointer-events-none absolute inset-0"
-                key={animKey}
-                onAnimationEnd={() => setShowStars(false)}
-              >
-                <span className="absolute left-6 top-6 text-3xl animate-star-float" aria-hidden="true">
-                  ⭐
-                </span>
-                <span
-                  className="absolute right-8 top-8 text-2xl animate-star-float"
-                  style={{ animationDelay: '90ms' }}
-                  aria-hidden="true"
+          return (
+            <div key={c.id} className="relative">
+              <button
+                type="button"
+                onClick={() => onPick(c)}
+                className={[
+                  'relative rounded-full',
+                  'w-[120px] h-[120px] md:w-[160px] md:h-[160px]',
+                  'shadow-[0_24px_60px_rgba(0,0,0,0.22)] ring-1 ring-white/70',
+                  'transition-transform duration-150',
+                  'hover:scale-[1.04] active:scale-[0.94] focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-200',
+                  showGlow ? 'ring-4 ring-amber-200 shadow-[0_0_0_10px_rgba(251,191,36,0.18)]' : '',
+                  shouldPop ? 'animate-success-bounce ring-4 ring-white/80 shadow-[0_0_0_10px_rgba(255,255,255,0.16),0_30px_80px_rgba(34,197,94,0.25)]' : '',
+                  shouldShake ? 'animate-shake' : '',
+                ].join(' ')}
+                style={{ backgroundColor: c.hex }}
+                aria-label={c.label}
+              />
+
+              {showStars && isCorrect ? (
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  key={animKey}
+                  onAnimationEnd={() => setShowStars(false)}
                 >
-                  ⭐
-                </span>
-                <span
-                  className="absolute left-1/2 top-10 -translate-x-1/2 text-4xl animate-star-float"
-                  style={{ animationDelay: '140ms' }}
-                  aria-hidden="true"
-                >
-                  ✨
-                </span>
-              </div>
-            ) : null}
-          </div>
-        ))}
+                  {/* burst from center */}
+                  <span
+                    className="absolute left-1/2 top-1/2 text-3xl animate-burst"
+                    style={{ '--dx': '-90px', '--dy': '-70px' }}
+                    aria-hidden="true"
+                  >
+                    ⭐
+                  </span>
+                  <span
+                    className="absolute left-1/2 top-1/2 text-2xl animate-burst"
+                    style={{ '--dx': '80px', '--dy': '-60px', animationDelay: '40ms' }}
+                    aria-hidden="true"
+                  >
+                    ✨
+                  </span>
+                  <span
+                    className="absolute left-1/2 top-1/2 text-3xl animate-burst"
+                    style={{ '--dx': '-110px', '--dy': '20px', animationDelay: '70ms' }}
+                    aria-hidden="true"
+                  >
+                    ⭐
+                  </span>
+                  <span
+                    className="absolute left-1/2 top-1/2 text-2xl animate-burst"
+                    style={{ '--dx': '115px', '--dy': '10px', animationDelay: '90ms' }}
+                    aria-hidden="true"
+                  >
+                    ⭐
+                  </span>
+                  <span
+                    className="absolute left-1/2 top-1/2 text-4xl animate-burst"
+                    style={{ '--dx': '0px', '--dy': '-110px', animationDelay: '110ms' }}
+                    aria-hidden="true"
+                  >
+                    ✨
+                  </span>
+                  <span
+                    className="absolute left-1/2 top-1/2 text-3xl animate-burst"
+                    style={{ '--dx': '0px', '--dy': '120px', animationDelay: '140ms' }}
+                    aria-hidden="true"
+                  >
+                    ⭐
+                  </span>
+                </div>
+              ) : null}
+            </div>
+          )
+        })}
       </div>
     </div>
   )
