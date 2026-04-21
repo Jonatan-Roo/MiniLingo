@@ -24,7 +24,7 @@ export default function Game({ onWin, onCompleteColor }) {
   const [mascotState, setMascotState] = useState('thinking')
 
   const instruction = useMemo(() => {
-    return status === 'success' ? 'Great job!' : status === 'wrong' ? 'Try again' : 'Tap'
+    return status === 'success' ? '¡Genial!' : status === 'wrong' ? 'Probá otra vez' : 'Tocá'
   }, [status])
 
   function onPick(choice) {
@@ -54,7 +54,7 @@ export default function Game({ onWin, onCompleteColor }) {
   }
 
   return (
-    <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
+    <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-1 text-center sm:px-0">
       <div className="flex flex-col items-center gap-4">
         <Mascot state={mascotState} size={90} className="mb-1" />
         <div className="flex items-center justify-center gap-3">
@@ -80,7 +80,7 @@ export default function Game({ onWin, onCompleteColor }) {
         </div>
       </div>
 
-      <div className="grid w-full grid-cols-2 gap-5 md:gap-8">
+      <div className="grid w-full grid-cols-2 gap-4 sm:gap-5 md:grid-cols-4 md:gap-6">
         {CHOICES.map((c) => (
           <div key={c.id} className="relative">
             <ColorCard

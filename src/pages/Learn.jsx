@@ -96,9 +96,9 @@ export default function Learn({ onCompleteColor }) {
 
           <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
-              onClick={() => {
+              onClick={async () => {
                 setMascotState('thinking')
-                void playColorPronunciation(color.id)
+                await playColorPronunciation(color.id)
                 window.setTimeout(() => setMascotState('idle'), 700)
               }}
               className="w-full max-w-md bg-sky-100 px-8 py-5 text-lg text-sky-900 shadow-[0_18px_45px_rgba(2,132,199,0.25)] hover:bg-sky-200 focus-visible:ring-sky-200 sm:w-auto"
@@ -106,7 +106,7 @@ export default function Learn({ onCompleteColor }) {
               <span className="grid size-10 place-items-center rounded-full bg-white shadow-sm">
                 <span className="text-xl leading-none">🔊</span>
               </span>
-              <span className="tracking-wide">LISTEN</span>
+              <span className="tracking-wide">ESCUCHAR</span>
             </Button>
 
             <Button
@@ -118,7 +118,7 @@ export default function Learn({ onCompleteColor }) {
               }}
               className="w-full max-w-xs bg-amber-200 text-amber-950 hover:bg-amber-300 focus-visible:ring-amber-200 sm:w-auto"
             >
-              <span className="tracking-wide">NEXT</span>
+              <span className="tracking-wide">SIGUIENTE</span>
               <span className="grid size-10 place-items-center rounded-full bg-white shadow-sm">
                 <span className="text-xl leading-none">→</span>
               </span>

@@ -22,10 +22,10 @@ export default function Reward({ stars = 0 }) {
           </div>
 
           <div className="mt-8 text-5xl font-black tracking-tight text-amber-950 md:text-6xl">
-            Great job!
+            ¡Genial!
           </div>
           <p className="mt-3 text-base font-semibold text-sky-900/80 md:text-lg">
-            You collected <span className="font-black text-amber-900">3</span> stars!
+            ¡Juntaste <span className="font-black text-amber-900">3</span> estrellas!
           </p>
 
           <div className="mt-10 flex flex-col items-center gap-7">
@@ -41,7 +41,7 @@ export default function Reward({ stars = 0 }) {
                 <span className="grid size-10 place-items-center rounded-full bg-white shadow-sm" aria-hidden="true">
                   ↻
                 </span>
-                Play again
+                Jugar de nuevo
               </Button>
             </Link>
 

@@ -6,9 +6,11 @@ function NavItem({ to, children }) {
       to={to}
       className={({ isActive }) =>
         [
-          'rounded-full px-3 py-2 text-sm font-semibold transition',
+          'rounded-full px-3 py-2 text-sm font-semibold transition active:scale-[0.98]',
           'focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-200',
-          isActive ? 'bg-amber-100 text-amber-900' : 'text-zinc-600 hover:bg-zinc-100',
+          isActive
+            ? 'bg-amber-100 text-amber-900 shadow-sm ring-1 ring-amber-200/50'
+            : 'text-zinc-600 hover:bg-zinc-100',
         ].join(' ')
       }
     >
@@ -29,9 +31,9 @@ export default function Navbar({ stars = 0 }) {
         </div>
 
         <nav className="hidden flex-1 items-center justify-center gap-2 md:flex">
-          <NavItem to="/">Home</NavItem>
-          <NavItem to="/learn/red">Learn</NavItem>
-          <NavItem to="/games">Games</NavItem>
+          <NavItem to="/">Inicio</NavItem>
+          <NavItem to="/learn/red">Aprender</NavItem>
+          <NavItem to="/games">Juegos</NavItem>
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
@@ -42,7 +44,7 @@ export default function Navbar({ stars = 0 }) {
 
           <button
             type="button"
-            className="grid size-10 place-items-center rounded-full bg-white shadow-sm ring-1 ring-zinc-200 transition hover:bg-zinc-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-200"
+            className="grid size-10 place-items-center rounded-full bg-white shadow-sm ring-1 ring-zinc-200 transition hover:bg-zinc-50 active:scale-[0.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-200"
             aria-label="Profile"
           >
             <span aria-hidden="true">👤</span>

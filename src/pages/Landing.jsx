@@ -60,14 +60,14 @@ export default function Landing() {
         <div className="text-center lg:text-left">
           <div className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-2 text-sm font-extrabold text-amber-900 shadow-sm">
             <span aria-hidden="true">🐝</span>
-            MiniLingo for kids (4–6)
+            MiniLingo para peques (4–6)
           </div>
           <h1 className="mt-5 text-5xl font-black tracking-tight text-amber-950 md:text-6xl">
-            Learn English while playing
+            Aprende inglés jugando
           </h1>
           <p className="mt-4 text-base font-semibold text-zinc-600 md:text-lg">
-            A safe, playful English learning app for kids — built with games, audio, and colorful lessons that
-            parents can trust.
+            Una app segura y divertida para que los peques aprendan inglés con juegos, audio y lecciones
+            coloridas. Ideal para padres que quieren una experiencia confiable.
           </p>
 
           <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
@@ -76,14 +76,14 @@ export default function Landing() {
                 <span className="text-2xl" aria-hidden="true">
                   🚀
                 </span>
-                Start Learning
+                Comenzar
               </Button>
             </Link>
             <Link
               to="/"
               className="inline-flex items-center justify-center rounded-full bg-white/70 px-6 py-4 text-sm font-extrabold text-zinc-800 shadow-sm ring-1 ring-white/70 transition hover:bg-white"
             >
-              Explore the app
+              Ver la app
             </Link>
           </div>
         </div>
@@ -96,10 +96,10 @@ export default function Landing() {
             <div className="aspect-[4/3] rounded-[26px] bg-gradient-to-br from-amber-200 via-white to-sky-200" />
             <div className="mt-4 grid grid-cols-3 gap-3">
               <div className="rounded-2xl bg-amber-100 p-3 text-center text-xs font-extrabold text-amber-900">
-                Colors
+                Colores
               </div>
               <div className="rounded-2xl bg-emerald-100 p-3 text-center text-xs font-extrabold text-emerald-900">
-                Games
+                Juegos
               </div>
               <div className="rounded-2xl bg-sky-100 p-3 text-center text-xs font-extrabold text-sky-900">
                 Audio
@@ -112,28 +112,28 @@ export default function Landing() {
       {/* Features */}
       <section className="mx-auto max-w-5xl">
         <div className="text-center">
-          <div className="text-sm font-extrabold uppercase tracking-wide text-zinc-500">Features</div>
+          <div className="text-sm font-extrabold uppercase tracking-wide text-zinc-500">Funciones</div>
           <div className="mt-2 text-3xl font-black tracking-tight text-zinc-900 md:text-4xl">
-            Built for tiny hands and big smiles
+            Hecho para manos pequeñas y grandes sonrisas
           </div>
         </div>
         <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
           <FeatureCard
             icon="🎨"
-            title="Learn colors"
-            text="Big, bright lessons with simple words and spelling."
+            title="Aprender colores"
+            text="Lecciones grandes y coloridas con palabras simples."
             className="bg-amber-50/60"
           />
           <FeatureCard
             icon="🎮"
-            title="Interactive games"
-            text="Tap the correct color and get instant fun feedback."
+            title="Juegos interactivos"
+            text="Toca el color correcto y recibe feedback divertido al instante."
             className="bg-emerald-50/60"
           />
           <FeatureCard
             icon="🔊"
-            title="Audio learning"
-            text="Pronunciation sounds with a no-overlap audio system."
+            title="Aprendizaje con audio"
+            text="Pronunciación clara con audio sin solaparse."
             className="bg-sky-50/60"
           />
         </div>
@@ -145,21 +145,20 @@ export default function Landing() {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center">
             <div className="text-center lg:text-left">
               <div className="text-sm font-extrabold uppercase tracking-wide text-zinc-500">
-                Benefits for parents
+                Beneficios para padres
               </div>
               <div className="mt-2 text-3xl font-black tracking-tight text-zinc-900 md:text-4xl">
-                Safe. Educational. Fun.
+                Seguro. Educativo. Divertido.
               </div>
               <p className="mt-3 text-sm font-semibold text-zinc-600 md:text-base">
-                MiniLingo keeps the experience focused on learning with friendly visuals, big touch targets, and
-                simple progress tracking.
+                MiniLingo se enfoca en aprender con visuales amigables, botones grandes y un progreso simple.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              <BenefitPill icon="🛡️" title="Safe" text="No chat, no distractions, kid-first UI." />
-              <BenefitPill icon="📚" title="Educational" text="Repetition, audio cues, visual learning." />
-              <BenefitPill icon="✨" title="Fun" text="Games + rewards that motivate." />
-              <BenefitPill icon="💾" title="Progress" text="Saved locally with localStorage." />
+              <BenefitPill icon="🛡️" title="Seguro" text="Sin chat, sin distracciones, UI para peques." />
+              <BenefitPill icon="📚" title="Educativo" text="Repetición, audio y aprendizaje visual." />
+              <BenefitPill icon="✨" title="Divertido" text="Juegos + recompensas que motivan." />
+              <BenefitPill icon="💾" title="Progreso" text="Guardado local con localStorage." />
             </div>
           </div>
         </div>
@@ -169,20 +168,20 @@ export default function Landing() {
       <section className="mx-auto max-w-5xl">
         <div className="flex flex-col items-center justify-between gap-3 text-center md:flex-row md:text-left">
           <div>
-            <div className="text-sm font-extrabold uppercase tracking-wide text-zinc-500">Screenshots</div>
+            <div className="text-sm font-extrabold uppercase tracking-wide text-zinc-500">Capturas</div>
             <div className="mt-2 text-3xl font-black tracking-tight text-zinc-900 md:text-4xl">
-              A bright, playful experience
+              Una experiencia brillante y amigable
             </div>
           </div>
           <div className="text-sm font-semibold text-zinc-600">
-            Tip: You can replace these placeholders with real screenshots later.
+            Tip: luego podés reemplazar estos placeholders por capturas reales.
           </div>
         </div>
 
         <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-          <ScreenshotCard label="Home" className="bg-gradient-to-br from-amber-200 via-white to-sky-200" />
-          <ScreenshotCard label="Learn Colors" className="bg-gradient-to-br from-rose-200 via-white to-amber-200" />
-          <ScreenshotCard label="Tap the Color Game" className="bg-gradient-to-br from-emerald-200 via-white to-sky-200" />
+          <ScreenshotCard label="Inicio" className="bg-gradient-to-br from-amber-200 via-white to-sky-200" />
+          <ScreenshotCard label="Aprender Colores" className="bg-gradient-to-br from-rose-200 via-white to-amber-200" />
+          <ScreenshotCard label="Juego: Toca el color" className="bg-gradient-to-br from-emerald-200 via-white to-sky-200" />
         </div>
       </section>
 
@@ -190,10 +189,10 @@ export default function Landing() {
       <section className="mx-auto max-w-5xl">
         <div className="rounded-[32px] bg-gradient-to-br from-emerald-200 via-white to-amber-200 p-8 text-center shadow-[0_20px_60px_rgba(0,0,0,0.10)] ring-1 ring-white/70 md:p-10">
           <div className="text-3xl font-black tracking-tight text-zinc-900 md:text-4xl">
-            Ready to start?
+            ¿Listos para empezar?
           </div>
           <p className="mt-2 text-sm font-semibold text-zinc-700 md:text-base">
-            Jump into the first color lesson and begin earning stars.
+            Entren a la primera lección de colores y empiecen a ganar estrellas.
           </p>
           <div className="mt-6 flex justify-center">
             <Link to="/learn/red" className="w-full max-w-md">
@@ -201,7 +200,7 @@ export default function Landing() {
                 <span className="text-2xl" aria-hidden="true">
                   ⭐
                 </span>
-                Start Learning
+                Comenzar
               </Button>
             </Link>
           </div>

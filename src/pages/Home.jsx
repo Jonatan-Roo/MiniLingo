@@ -8,7 +8,7 @@ function Pill({ title, icon, className, to }) {
       to={to}
       className={[
         'group relative block w-full rounded-[28px] p-6 shadow-[0_18px_40px_rgba(0,0,0,0.12)] transition',
-        'hover:-translate-y-1 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/70',
+        'hover:-translate-y-1 active:scale-[0.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-white/70',
         className,
       ].join(' ')}
     >
@@ -61,12 +61,12 @@ function PromoCard({ badge, title, subtitle, action, left }) {
           </div>
           <div className="text-xl font-extrabold text-zinc-900">{title}</div>
           <p className="text-sm font-semibold text-zinc-600">{subtitle}</p>
-          <button
-            type="button"
-            className="mt-2 inline-flex w-fit items-center justify-center rounded-full bg-amber-200 px-5 py-3 text-sm font-extrabold text-amber-950 shadow-sm transition hover:bg-amber-300 focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-200"
+          <Link
+            to="/proximamente"
+            className="mt-2 inline-flex w-fit items-center justify-center rounded-full bg-amber-200 px-5 py-3 text-sm font-extrabold text-amber-950 shadow-sm transition hover:bg-amber-300 active:scale-[0.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-200"
           >
             {action}
-          </button>
+          </Link>
         </div>
       </div>
     </div>
@@ -123,7 +123,7 @@ function LastLearned({ lastCompletedColor }) {
         </div>
         <div className="text-left">
           <div className="text-xs font-extrabold uppercase tracking-wide text-zinc-500">
-            Last learned
+            Último aprendido
           </div>
           <div className="mt-0.5 inline-flex items-center gap-2 rounded-full bg-zinc-100 px-3 py-1 text-base font-black text-zinc-900">
             {c.label}
@@ -163,7 +163,7 @@ export default function Home({ stars = 0, lastCompletedColor = null }) {
             <span className="text-2xl" aria-hidden="true">
               🚀
             </span>
-            Continue Learning
+            Continuar
           </Button>
         </Link>
       </section>
@@ -175,9 +175,9 @@ export default function Home({ stars = 0, lastCompletedColor = null }) {
 
       <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Pill title="Colors" icon="🎨" className="bg-amber-300" to="/learn/red" />
-        <Pill title="Animals" icon="🐾" className="bg-emerald-300" to="/" />
-        <Pill title="Numbers" icon="🔢" className="bg-sky-300" to="/" />
-        <Pill title="Fruits" icon="🍎" className="bg-rose-300" to="/" />
+        <Pill title="Animals" icon="🐾" className="bg-emerald-300" to="/proximamente" />
+        <Pill title="Numbers" icon="🔢" className="bg-sky-300" to="/proximamente" />
+        <Pill title="Fruits" icon="🍎" className="bg-rose-300" to="/proximamente" />
       </section>
 
       <section className="overflow-hidden rounded-[28px] bg-white/80 p-6 shadow-[0_18px_40px_rgba(0,0,0,0.10)] ring-1 ring-white/70">
