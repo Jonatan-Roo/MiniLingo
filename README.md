@@ -1,3 +1,52 @@
+# MiniLingo 🐝
+
+MiniLingo is a web app designed to teach English to kids (ages 4–6) through interactive games, sounds, and visual learning.
+
+## 🚀 Features
+
+- 🎨 Learn colors with audio
+- 🎮 Interactive games (Tap the correct color)
+- ⭐ Reward system with stars
+- 🐝 Animated mascot (Buzz)
+- 🔊 Audio system without overlap
+- 💾 Progress saved with localStorage
+
+## 🛠 Tech Stack
+
+- React + Vite
+- Tailwind CSS
+- React Router
+
+## 📦 Installation
+
+```bash
+npm install
+npm run dev
+```
+
+## 🎯 Roadmap
+
+- More modules (Animals, Numbers, Fruits)
+- Parent dashboard
+- User accounts
+- Mobile app version
+
+Made with ❤️ for kids learning English
+
+---
+
+# 🌿 5. FLUJO DE TRABAJO PRO (no labures como principiante)
+
+A partir de ahora:
+
+### 👉 Cada mejora = branch
+
+Ejemplo:
+
+```bash
+git checkout -b feature/audio-improvements
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

@@ -70,7 +70,7 @@ export default function App() {
         path="/"
         element={
           <Shell stars={stars}>
-            <Home />
+            <Home stars={stars} lastCompletedColor={lastCompletedColor} />
           </Shell>
         }
       />
