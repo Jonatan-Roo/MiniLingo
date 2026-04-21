@@ -8,6 +8,28 @@ const SOUND_URLS = {
   click: '/audio/ui/click.mp3',
 }
 
+const FALLBACK_SPEECH = {
+  red: 'red',
+  blue: 'blue',
+  green: 'green',
+  yellow: 'yellow',
+}
+
+function speakEnglish(text) {
+  try {
+    if (typeof window === 'undefined') return
+    const synth = window.speechSynthesis
+    if (!synth) return
+    synth.cancel()
+    const utter = new SpeechSynthesisUtterance(text)
+    utter.lang = 'en-US'
+    utter.rate = 0.9
+    synth.speak(utter)
+  } catch (err) {
+    console.error('[MiniLingo] SpeechSynthesis failed:', err)
+  }
+}
+
 class AudioPlayer {
   current = null
   cache = new Map()
@@ -19,7 +41,7 @@ class AudioPlayer {
     this.current = null
   }
 
-  async playUrl(url) {
+  async playUrl(url, { fallbackSpeakText } = {}) {
     if (typeof window === 'undefined') return
     this.stop()
 
@@ -30,9 +52,13 @@ class AudioPlayer {
     this.current = audio
 
     try {
+      audio.onerror = () => {
+        console.error('[MiniLingo] Audio load error:', url)
+      }
       await audio.play()
-    } catch {
-      // puede fallar si el navegador bloquea autoplay
+    } catch (err) {
+      console.error('[MiniLingo] Audio play failed:', url, err)
+      if (fallbackSpeakText) speakEnglish(fallbackSpeakText)
     }
   }
 }
@@ -46,12 +72,36 @@ export function stopSounds() {
 export async function playColorPronunciation(colorId) {
   const url = SOUND_URLS[colorId]
   if (!url) return
-  return player.playUrl(url)
+  const fallbackSpeakText = FALLBACK_SPEECH[colorId]
+  return player.playUrl(url, { fallbackSpeakText })
 }
 
 export async function playUiSound(name) {
   const url = SOUND_URLS[name]
   if (!url) return
   return player.playUrl(url)
+}
+
+export function logMissingAudioFiles() {
+  const urls = [
+    SOUND_URLS.red,
+    SOUND_URLS.blue,
+    SOUND_URLS.green,
+    SOUND_URLS.yellow,
+    SOUND_URLS.success,
+    SOUND_URLS.error,
+    SOUND_URLS.click,
+  ]
+
+  urls.forEach(async (url) => {
+    try {
+      const res = await fetch(url, { method: 'HEAD' })
+      if (!res.ok) {
+        console.error('[MiniLingo] Missing audio file:', url, res.status)
+      }
+    } catch (err) {
+      console.error('[MiniLingo] Audio file check failed:', url, err)
+    }
+  })
 }
 

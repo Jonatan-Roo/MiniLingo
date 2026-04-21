@@ -1,17 +1,30 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import BottomNav from './components/BottomNav'
 import Home from './pages/Home'
+import ComingSoon from './pages/ComingSoon'
+import Landing from './pages/Landing'
 import Learn from './pages/Learn'
 import Game from './pages/Game'
 import Reward from './pages/Reward'
+import { logMissingAudioFiles } from './utils/audio'
 
 function Shell({ stars, children }) {
+  const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+  }, [location.pathname])
+
   return (
     <div className="min-h-svh bg-gradient-to-b from-amber-50 via-white to-sky-50">
       <Navbar stars={stars} />
-      <main className="mx-auto max-w-5xl px-4 pb-24 pt-6 md:pb-10">{children}</main>
+      <main className="mx-auto max-w-5xl px-4 pb-24 pt-6 md:pb-10">
+        <div key={location.pathname} className="animate-fade-up">
+          {children}
+        </div>
+      </main>
       <BottomNav />
     </div>
   )
@@ -23,6 +36,8 @@ export default function App() {
 
   useEffect(() => {
     try {
+      logMissingAudioFiles()
+
       const savedStars = window.localStorage.getItem('stars')
       if (savedStars != null) {
         const n = Number(savedStars)
@@ -67,6 +82,22 @@ export default function App() {
   return (
     <Routes>
       <Route
+        path="/landing"
+        element={
+          <Shell stars={stars}>
+            <Landing />
+          </Shell>
+        }
+      />
+      <Route
+        path="/proximamente"
+        element={
+          <Shell stars={stars}>
+            <ComingSoon />
+          </Shell>
+        }
+      />
+      <Route
         path="/"
         element={
           <Shell stars={stars}>
@@ -107,8 +138,8 @@ export default function App() {
         element={
           <Shell stars={stars}>
             <div className="mx-auto max-w-xl rounded-[28px] bg-white/75 p-8 text-center shadow-[0_18px_40px_rgba(0,0,0,0.10)] ring-1 ring-white/70">
-              <div className="text-2xl font-extrabold text-zinc-900">Parents</div>
-              <p className="mt-2 text-sm font-semibold text-zinc-600">Coming soon.</p>
+              <div className="text-2xl font-extrabold text-zinc-900">Padres</div>
+              <p className="mt-2 text-sm font-semibold text-zinc-600">Próximamente.</p>
             </div>
           </Shell>
         }
