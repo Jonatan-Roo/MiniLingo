@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { COLORS, getColorById, getNextColorId } from '../data/colors'
 import Button from '../components/Button'
+import Mascot from '../components/Mascot'
 
 function Pill({ title, icon, className, to }) {
   return (
@@ -146,11 +147,7 @@ export default function Home({ stars = 0, lastCompletedColor = null }) {
   return (
     <div className="space-y-8">
       <section className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
-        <div className="grid size-36 place-items-center rounded-[28px] bg-white/70 shadow-[0_18px_40px_rgba(0,0,0,0.10)] ring-1 ring-white/70">
-          <span className="text-6xl" aria-hidden="true">
-            🐝
-          </span>
-        </div>
+        <Mascot state="idle" size={132} className="mb-1" />
         <h1 className="text-5xl font-black tracking-tight text-amber-950 md:text-6xl">MiniLingo</h1>
         <p className="max-w-xl text-base font-semibold text-zinc-600 md:text-lg">
           Let’s explore the magical world of English together with our friend Buzz!
@@ -175,9 +172,64 @@ export default function Home({ stars = 0, lastCompletedColor = null }) {
 
       <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Pill title="Colors" icon="🎨" className="bg-amber-300" to="/learn/red" />
-        <Pill title="Animals" icon="🐾" className="bg-emerald-300" to="/proximamente" />
-        <Pill title="Numbers" icon="🔢" className="bg-sky-300" to="/proximamente" />
-        <Pill title="Fruits" icon="🍎" className="bg-rose-300" to="/proximamente" />
+        <Pill title="Game" icon="🎮" className="bg-emerald-300" to="/games" />
+      </section>
+
+      <section className="rounded-[28px] bg-white/70 p-6 shadow-[0_18px_40px_rgba(0,0,0,0.08)] ring-1 ring-white/70">
+        <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
+          <div>
+            <div className="text-lg font-extrabold text-zinc-900">Más contenido pronto</div>
+            <div className="mt-1 text-sm font-semibold text-zinc-600">
+              Animales, números, frutas y mucho más.
+            </div>
+          </div>
+          <Link
+            to="/proximamente"
+            className="inline-flex items-center justify-center rounded-full bg-amber-200 px-6 py-4 text-sm font-extrabold text-amber-950 shadow-sm transition hover:bg-amber-300 active:scale-[0.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-200"
+          >
+            Ver lo nuevo
+          </Link>
+        </div>
+      </section>
+
+      <section className="overflow-hidden rounded-[28px] bg-gradient-to-br from-amber-100 via-white to-emerald-100 p-6 shadow-[0_18px_40px_rgba(0,0,0,0.10)] ring-1 ring-white/70">
+        <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
+          <div>
+            <div className="text-lg font-extrabold text-zinc-900">Desbloquea todo el contenido</div>
+            <div className="mt-1 text-sm font-semibold text-zinc-600">
+              Acceso a más módulos y actividades.
+            </div>
+          </div>
+          <Link to="/proximamente" className="w-full md:w-auto">
+            <Button className="w-full bg-emerald-200 px-8 py-4 text-base text-emerald-950 shadow-[0_18px_45px_rgba(16,185,129,0.25)] hover:bg-emerald-300 focus-visible:ring-emerald-200">
+              <span aria-hidden="true">🔓</span>
+              Obtener acceso
+            </Button>
+          </Link>
+        </div>
+
+        <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
+          {[
+            { title: 'Animals', icon: '🐾' },
+            { title: 'Numbers', icon: '🔢' },
+            { title: 'Fruits', icon: '🍎' },
+          ].map((m) => (
+            <div
+              key={m.title}
+              className="flex items-center justify-between rounded-[22px] bg-white/75 px-5 py-4 shadow-sm ring-1 ring-white/70"
+            >
+              <div className="flex items-center gap-3">
+                <div className="grid size-10 place-items-center rounded-full bg-zinc-100">
+                  <span aria-hidden="true">{m.icon}</span>
+                </div>
+                <div className="text-sm font-extrabold text-zinc-900">{m.title}</div>
+              </div>
+              <span className="text-lg" aria-hidden="true">
+                🔒
+              </span>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="overflow-hidden rounded-[28px] bg-white/80 p-6 shadow-[0_18px_40px_rgba(0,0,0,0.10)] ring-1 ring-white/70">

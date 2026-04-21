@@ -76,7 +76,7 @@ export default function Landing() {
                 <span className="text-2xl" aria-hidden="true">
                   🚀
                 </span>
-                Comenzar
+                Comenzar gratis
               </Button>
             </Link>
             <Link
@@ -85,6 +85,15 @@ export default function Landing() {
             >
               Ver la app
             </Link>
+          </div>
+
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-2 text-xs font-extrabold text-zinc-800 shadow-sm ring-1 ring-white/70">
+              ✅ Sin anuncios
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-2 text-xs font-extrabold text-zinc-800 shadow-sm ring-1 ring-white/70">
+              🛡️ 100% seguro para niños
+            </span>
           </div>
         </div>
 
@@ -103,6 +112,50 @@ export default function Landing() {
               </div>
               <div className="rounded-2xl bg-sky-100 p-3 text-center text-xs font-extrabold text-sky-900">
                 Audio
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Para quién es */}
+      <section className="mx-auto max-w-5xl">
+        <div className="text-center">
+          <div className="text-sm font-extrabold uppercase tracking-wide text-zinc-500">Para quién es</div>
+          <div className="mt-2 text-3xl font-black tracking-tight text-zinc-900 md:text-4xl">
+            Pensado para aprender sin frustración
+          </div>
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="rounded-[28px] bg-white/80 p-7 shadow-[0_18px_40px_rgba(0,0,0,0.10)] ring-1 ring-white/70">
+            <div className="flex items-start gap-4">
+              <div className="grid size-14 place-items-center rounded-2xl bg-amber-100 shadow-sm">
+                <span className="text-2xl" aria-hidden="true">
+                  🧒
+                </span>
+              </div>
+              <div className="text-left">
+                <div className="text-lg font-extrabold text-zinc-900">Niños de 4 a 6 años</div>
+                <p className="mt-1 text-sm font-semibold text-zinc-600">
+                  Botones grandes, colores brillantes y actividades cortas para mantener la atención.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-[28px] bg-white/80 p-7 shadow-[0_18px_40px_rgba(0,0,0,0.10)] ring-1 ring-white/70">
+            <div className="flex items-start gap-4">
+              <div className="grid size-14 place-items-center rounded-2xl bg-emerald-100 shadow-sm">
+                <span className="text-2xl" aria-hidden="true">
+                  👨‍👩‍👧
+                </span>
+              </div>
+              <div className="text-left">
+                <div className="text-lg font-extrabold text-zinc-900">Padres sin conocimientos de inglés</div>
+                <p className="mt-1 text-sm font-semibold text-zinc-600">
+                  Todo está guiado con audio y visuales, sin necesidad de ayudar a traducir.
+                </p>
               </div>
             </div>
           </div>
@@ -136,6 +189,48 @@ export default function Landing() {
             text="Pronunciación clara con audio sin solaparse."
             className="bg-sky-50/60"
           />
+        </div>
+      </section>
+
+      {/* Cómo funciona */}
+      <section className="mx-auto max-w-5xl">
+        <div className="rounded-[32px] bg-white/70 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.08)] ring-1 ring-white/70 md:p-10">
+          <div className="text-center">
+            <div className="text-sm font-extrabold uppercase tracking-wide text-zinc-500">Cómo funciona</div>
+            <div className="mt-2 text-3xl font-black tracking-tight text-zinc-900 md:text-4xl">
+              Un camino simple para avanzar
+            </div>
+          </div>
+
+          <div className="mt-7 grid grid-cols-1 gap-4 md:grid-cols-3">
+            <div className="rounded-[28px] bg-amber-50/60 p-6 text-center shadow-sm ring-1 ring-white/70">
+              <div className="mx-auto grid size-14 place-items-center rounded-2xl bg-amber-100">
+                <span className="text-2xl" aria-hidden="true">
+                  1️⃣
+                </span>
+              </div>
+              <div className="mt-3 text-lg font-extrabold text-zinc-900">Aprende</div>
+              <p className="mt-1 text-sm font-semibold text-zinc-600">Mira, escucha y repite.</p>
+            </div>
+            <div className="rounded-[28px] bg-emerald-50/60 p-6 text-center shadow-sm ring-1 ring-white/70">
+              <div className="mx-auto grid size-14 place-items-center rounded-2xl bg-emerald-100">
+                <span className="text-2xl" aria-hidden="true">
+                  2️⃣
+                </span>
+              </div>
+              <div className="mt-3 text-lg font-extrabold text-zinc-900">Juega</div>
+              <p className="mt-1 text-sm font-semibold text-zinc-600">Toca el color correcto.</p>
+            </div>
+            <div className="rounded-[28px] bg-sky-50/60 p-6 text-center shadow-sm ring-1 ring-white/70">
+              <div className="mx-auto grid size-14 place-items-center rounded-2xl bg-sky-100">
+                <span className="text-2xl" aria-hidden="true">
+                  3️⃣
+                </span>
+              </div>
+              <div className="mt-3 text-lg font-extrabold text-zinc-900">Gana estrellas</div>
+              <p className="mt-1 text-sm font-semibold text-zinc-600">Recompensas que motivan.</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -200,7 +295,7 @@ export default function Landing() {
                 <span className="text-2xl" aria-hidden="true">
                   ⭐
                 </span>
-                Comenzar
+                Comenzar gratis
               </Button>
             </Link>
           </div>

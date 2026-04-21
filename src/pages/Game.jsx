@@ -57,6 +57,7 @@ export default function Game({ onWin, onCompleteColor }) {
     <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-1 text-center sm:px-0">
       <div className="flex flex-col items-center gap-4">
         <Mascot state={mascotState} size={90} className="mb-1" />
+        <div className="text-sm font-extrabold text-zinc-600">Let's play!</div>
         <div className="flex items-center justify-center gap-3">
           <span className="text-5xl font-black tracking-tight text-zinc-900 md:text-6xl">
             {instruction}

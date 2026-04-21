@@ -17,6 +17,7 @@ export default function Learn({ onCompleteColor }) {
   const navigate = useNavigate()
   const { colorId } = useParams()
   const [mascotState, setMascotState] = useState('idle')
+  const [showNextReward, setShowNextReward] = useState(false)
 
   const color = useMemo(() => getColorById(colorId), [colorId])
   const spelling = useMemo(() => splitSpelling(color.label), [color.label])
@@ -24,8 +25,36 @@ export default function Learn({ onCompleteColor }) {
   return (
     <div className="mx-auto flex max-w-3xl flex-col items-center">
       <div className="w-full rounded-[32px] bg-white/70 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.08)] ring-1 ring-white/70 md:p-10">
-        <div className="flex flex-col items-center gap-6 md:gap-8">
+        <div className="relative flex flex-col items-center gap-6 md:gap-8">
+          {showNextReward ? (
+            <div className="pointer-events-none absolute inset-0 z-10 grid place-items-center">
+              <div className="relative rounded-[28px] bg-white/85 px-8 py-6 text-center shadow-[0_18px_50px_rgba(0,0,0,0.12)] ring-1 ring-white/70 animate-fade-up">
+                <div className="text-3xl font-black tracking-tight text-emerald-900">¡Bien!</div>
+                <div className="mt-1 text-sm font-semibold text-zinc-600">Sigue así</div>
+
+                <span className="absolute -left-3 -top-3 text-3xl animate-star-float" aria-hidden="true">
+                  ⭐
+                </span>
+                <span
+                  className="absolute -right-2 -top-2 text-2xl animate-star-float"
+                  style={{ animationDelay: '90ms' }}
+                  aria-hidden="true"
+                >
+                  ✨
+                </span>
+                <span
+                  className="absolute left-1/2 -bottom-4 -translate-x-1/2 text-3xl animate-star-float"
+                  style={{ animationDelay: '140ms' }}
+                  aria-hidden="true"
+                >
+                  ⭐
+                </span>
+              </div>
+            </div>
+          ) : null}
+
           <Mascot state={mascotState} size={92} className="mb-1" />
+          <div className="text-sm font-extrabold text-zinc-600">Let's learn!</div>
           <div
             className="relative grid size-[240px] place-items-center rounded-full shadow-[0_24px_80px_rgba(0,0,0,0.12)] md:size-[320px] animate-slow-float"
             style={{ background: color.hex }}
@@ -101,6 +130,7 @@ export default function Learn({ onCompleteColor }) {
                 await playColorPronunciation(color.id)
                 window.setTimeout(() => setMascotState('idle'), 700)
               }}
+              disabled={showNextReward}
               className="w-full max-w-md bg-sky-100 px-8 py-5 text-lg text-sky-900 shadow-[0_18px_45px_rgba(2,132,199,0.25)] hover:bg-sky-200 focus-visible:ring-sky-200 sm:w-auto"
             >
               <span className="grid size-10 place-items-center rounded-full bg-white shadow-sm">
@@ -111,11 +141,19 @@ export default function Learn({ onCompleteColor }) {
 
             <Button
               onClick={() => {
+                if (showNextReward) return
                 if (typeof onCompleteColor === 'function' && color?.id) {
                   onCompleteColor(color.id)
                 }
-                navigate(`/learn/${getNextColorId(colorId)}`)
+                setMascotState('happy')
+                setShowNextReward(true)
+                window.setTimeout(() => {
+                  setShowNextReward(false)
+                  setMascotState('idle')
+                  navigate(`/learn/${getNextColorId(colorId)}`)
+                }, 500)
               }}
+              disabled={showNextReward}
               className="w-full max-w-xs bg-amber-200 text-amber-950 hover:bg-amber-300 focus-visible:ring-amber-200 sm:w-auto"
             >
               <span className="tracking-wide">SIGUIENTE</span>
