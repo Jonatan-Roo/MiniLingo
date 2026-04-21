@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { getColorById } from '../data/colors'
 
 function Pill({ title, icon, className, to }) {
   return (
@@ -71,7 +72,68 @@ function PromoCard({ badge, title, subtitle, action, left }) {
   )
 }
 
-export default function Home() {
+function StarsSummary({ stars }) {
+  const goal = 30
+  const pct = Math.max(0, Math.min(100, Math.round((stars / goal) * 100)))
+
+  return (
+    <div className="rounded-[28px] bg-gradient-to-br from-amber-200 to-yellow-100 p-6 shadow-[0_18px_40px_rgba(0,0,0,0.12)] ring-1 ring-white/70">
+      <div className="flex items-center justify-between">
+        <div>
+          <div className="text-sm font-extrabold text-amber-900/80">Total Stars</div>
+          <div className="mt-1 flex items-baseline gap-2">
+            <span className="text-4xl font-black tracking-tight text-amber-950">{stars}</span>
+            <span className="text-sm font-extrabold text-amber-900/70">/ {goal}</span>
+          </div>
+        </div>
+        <div className="grid size-14 place-items-center rounded-2xl bg-white/80 shadow-sm">
+          <span className="text-3xl" aria-hidden="true">
+            ⭐
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <div className="h-3 w-full overflow-hidden rounded-full bg-white/60 ring-1 ring-white/70">
+          <div
+            className="h-full rounded-full bg-amber-500 shadow-[0_10px_20px_rgba(245,158,11,0.35)] transition-[width] duration-500"
+            style={{ width: `${pct}%` }}
+          />
+        </div>
+        <div className="mt-2 text-xs font-extrabold text-amber-900/70">{pct}%</div>
+      </div>
+    </div>
+  )
+}
+
+function LastLearned({ lastCompletedColor }) {
+  if (!lastCompletedColor) return null
+  const c = getColorById(lastCompletedColor)
+
+  return (
+    <div className="rounded-[28px] bg-white/80 p-6 shadow-[0_18px_40px_rgba(0,0,0,0.10)] ring-1 ring-white/70">
+      <div className="flex items-center gap-4">
+        <div
+          className="relative grid size-14 place-items-center rounded-2xl shadow-[0_18px_40px_rgba(0,0,0,0.10)] ring-1 ring-white/70"
+          style={{ background: c.hex }}
+          aria-hidden="true"
+        >
+          <span className="text-2xl">🎨</span>
+        </div>
+        <div className="text-left">
+          <div className="text-xs font-extrabold uppercase tracking-wide text-zinc-500">
+            Last learned
+          </div>
+          <div className="mt-0.5 inline-flex items-center gap-2 rounded-full bg-zinc-100 px-3 py-1 text-base font-black text-zinc-900">
+            {c.label}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function Home({ stars = 0, lastCompletedColor = null }) {
   return (
     <div className="space-y-8">
       <section className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
@@ -84,6 +146,11 @@ export default function Home() {
         <p className="max-w-xl text-base font-semibold text-zinc-600 md:text-lg">
           Let’s explore the magical world of English together with our friend Buzz!
         </p>
+      </section>
+
+      <section className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <StarsSummary stars={stars} />
+        <LastLearned lastCompletedColor={lastCompletedColor} />
       </section>
 
       <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
